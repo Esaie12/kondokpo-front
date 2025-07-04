@@ -12,6 +12,9 @@ export interface Campagne {
     objectif_collecte:number,
     amount_collect?:number,
     cause_soutenir:string,
+    objectif_illimite:boolean
+    currency: 'EUR'|'XOF',
+    message_remerciement:string
     created_at?: string,
     user?:User
     categorie_event?:CategoryEventType

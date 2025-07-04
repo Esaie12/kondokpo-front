@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../app/store';
 import { loginStart, loginSuccess, loginFailure, logout } from '../../features/userSlice';
 
-const Template = () => {
+const Template= () => {
 
     const navigate = useNavigate()
     const location = useLocation()

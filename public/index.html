@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -15,6 +15,10 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <script src="https://cdn.fedapay.com/checkout.js?v=1.1.7"></script>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -24,7 +28,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Plateforme Kondokpo</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -39,5 +43,119 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
   </body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animation des onglets
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                const targetPane = document.querySelector(this.getAttribute('href'));
+                if (targetPane) {
+                    targetPane.classList.add('fade-in');
+                    setTimeout(() => {
+                        targetPane.classList.remove('fade-in');
+                    }, 600);
+                }
+            });
+        });
+
+        // Sélection des montants de donation
+        document.querySelectorAll('.donation-amount').forEach(amount => {
+            amount.addEventListener('click', function() {
+                // Supprimer la sélection précédente
+                this.parentElement.querySelectorAll('.donation-amount').forEach(el => {
+                    el.classList.remove('selected');
+                });
+                // Ajouter la sélection actuelle
+                this.classList.add('selected');
+            });
+        });
+
+        // Animation des cœurs flottants
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '<i class="fas fa-heart"></i>';
+            heart.style.cssText = `
+                position: fixed;
+                color: #ff9a9e;
+                font-size: ${Math.random() * 20 + 10}px;
+                left: ${Math.random() * window.innerWidth}px;
+                top: ${window.innerHeight + 20}px;
+                pointer-events: none;
+                z-index: 9999;
+                animation: floatUp 4s ease-out forwards;
+            `;
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+
+        // Style pour l'animation des cœurs
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes floatUp {
+                to {
+                    transform: translateY(-${window.innerHeight + 100}px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Créer des cœurs flottants périodiquement
+        setInterval(createFloatingHeart, 1000);
+
+        // Gestion du formulaire
+        document.getElementById('createCampaignForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Animation de succès
+            const button = this.querySelector('button[type="submit"]');
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check me-2"></i>Cagnotte créée !';
+            button.style.background = 'linear-gradient(135deg, #a8e6cf 0%, #88d8c0 100%)';
+            
+            // Créer plusieurs cœurs pour célébrer
+            for(let i = 0; i < 15; i++) {
+                setTimeout(createFloatingHeart, i * 200);
+            }
+            
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.style.background = '';
+                alert('Votre cagnotte solidaire a été créée avec succès ! 🎉\n\nVous pouvez maintenant la partager avec vos proches.');
+            }, 2000);
+        });
+
+        // Effet de hover sur les cartes
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+
+    <script>
+      document.getElementById('profileBtn').addEventListener('click', function(e) {
+          e.stopPropagation();
+          const dropdown = document.getElementById('profileDropdown');
+          dropdown.classList.toggle('show');
+      });
+
+      // Fermer le dropdown en cliquant ailleurs
+      document.addEventListener('click', function() {
+          const dropdown = document.getElementById('profileDropdown');
+          dropdown.classList.remove('show');
+      });
+    </script>
+
 </html>

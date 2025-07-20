@@ -34,7 +34,7 @@ const CreateCampagne = () => {
             await campagneApi.create(formData);
             setSuccessMessage(" Campagne crée avec succès !");
 
-            resetForm();
+           // resetForm();
 
         } catch (err: any) {
             if (err.response?.status === 422) {
@@ -64,7 +64,7 @@ const CreateCampagne = () => {
         <>
             <div className="row justify-content-center">
                 <div className="col-lg-8">
-                    {connected ? (
+                    {false ? (
                         <div className="card fade-in">
                             <div className="card-body p-4">
                                 <h3 className="text-center mb-4">Créer ma Cagnotte Solidaire</h3>

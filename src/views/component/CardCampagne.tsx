@@ -6,54 +6,56 @@ type Props = {
     campagne: Campagne
 }
 
-const CardCampagne = ({campagne}: Props) => {
+const CardCampagne = ({ campagne }: Props) => {
 
     return (
-        <div className="modern-campaign-card fade-in">
-            <div className="campaign-header-modern">
-                <div className="campaign-avatar">
-                    <i className="fas fa-heart"></i>
-                </div>
-                <div className="campaign-meta">
-                    {/*<span className="campaign-category">{campagne.categorie_event?.title}</span>*/}
-                    <span className="campaign-status active">{campagne.categorie_event?.title}</span>
-                </div>
-            </div>
+        <>
 
-            <div className="campaign-content">
-                <h3 className="campaign-title-modern">
-                    <Link to={`/campagnes/${campagne.slug}`} style={{textDecoration:"none"}} >{campagne.titre_cagnotte}</Link>
-                </h3>
-                <p className="campaign-author">Par {campagne.user?.first_name} {campagne.user?.last_name.charAt(0)+'.'} </p>
-                <p className="campaign-desc">
-                    {campagne.message_personnel
-                    ? campagne.message_personnel.slice(0, 100) + 
-                    (campagne.message_personnel.length > 100 ? "..." : "")
-                    : ""}
-                </p>
-
-                <div className="progress-container">
-                    <div className="progress-info">
-                        <span className="progress-percentage">{getProgressPercentage(campagne.amount_collect!, campagne.objectif_collecte)}%</span>
-                        <span className="progress-time">12 jours restants</span>
+            <div className="campaign-card">
+                <div className="card-header">
+                    <div className="card-badge">{campagne.categorie_event?.title}</div>
+                    <div className="heart-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                        </svg>
                     </div>
-                    {campagne && (campagne.amount_collect ?? 0) ? (
-                        <div className="progress-bar-modern">
-                            <div
-                                className="progress-fill"
-                                style={{
-                                    width: getProgressPercentage(campagne.amount_collect!, campagne.objectif_collecte) + "%"
-                                }}
-                            ></div>
-                        </div>
-                    ):(
-                        <>
-                        <span className="text-primary mb-2" >Soyez le premier et obtenez un kdo</span>
-                        </>
-                    )}
+                </div>
+                <div className="card-body">
+                    <h3 className="campaign-title">
+                        <Link to={`/campagnes/${campagne.slug}`} style={{ textDecoration: "none" }} >{campagne.titre_cagnotte}</Link>
+                    </h3>
+                    <p className="campaign-author">Par {campagne.user?.first_name} {campagne.user?.last_name.charAt(0) + '.'}</p>
 
-                    
-                    <div className="progress-stats">
+                    <p className="ampaign-description">
+                        {campagne.message_personnel
+                            ? campagne.message_personnel.slice(0, 100) +
+                            (campagne.message_personnel.length > 100 ? "..." : "")
+                            : ""}
+                    </p>
+                    <div className="progress-section">
+                        <div className="progress-info">
+                            <span className="progress-percentage">{getProgressPercentage(campagne.amount_collect!, campagne.objectif_collecte)}%</span>
+                            <span className="progress-time">12 jours restants</span>
+                        </div>
+                        {/*<div className="progress-bar">
+                            <div className="progress-fill" style={{ width: "63%" }}></div>
+                        </div>*/}
+                        {campagne && (campagne.amount_collect ?? 0) ? (
+                            <div className="progress-bar">
+                                <div
+                                    className="progress-fill"
+                                    style={{
+                                        width: getProgressPercentage(campagne.amount_collect!, campagne.objectif_collecte) + "%"
+                                    }}
+                                ></div>
+                            </div>
+                        ) : (
+                            <>
+                                <span className="text-primary mb-2" >Soyez le premier et obtenez un kdo</span>
+                            </>
+                        )}
+                    </div>
+                    {/*<div className="progress-stats">
                         <div className="stat">
                             <span className="stat-value">€{campagne.amount_collect}</span>
                             <span className="stat-label">collectés</span>
@@ -62,33 +64,14 @@ const CardCampagne = ({campagne}: Props) => {
                             <span className="stat-value">€{campagne.objectif_collecte}</span>
                             <span className="stat-label">objectif</span>
                         </div>
-                        {/*<div className="stat">
-                            <span className="stat-value">-</span>
-                            <span className="stat-label">contributeurs</span>
-                        </div>*/}
+                    </div>*/}
+                    <div className="card-actions">
+                        <a href="#" className="btn btn-primary">Contribuer</a>
+                        <a href="#" className="btn btn-secondary">Partager</a>
                     </div>
                 </div>
             </div>
-
-            <div className="campaign-actions">
-                <div className="quick-amounts">
-                    <span className="quick-amount" data-amount="10">10€</span>
-                    <span className="quick-amount" data-amount="25">25€</span>
-                    <span className="quick-amount selected" data-amount="50">50€</span>
-                </div>
-                <div className="action-buttons">
-                    <button className="btn-contribute">
-                        <i className="fas fa-heart me-2"></i>Contribuer
-                    </button>
-                    <button className="btn-share-modern">
-                        <i className="fas fa-share-alt"></i>
-                    </button>
-                    <button className="btn-more">
-                        <i className="fas fa-eye"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+        </>
     )
 }
 

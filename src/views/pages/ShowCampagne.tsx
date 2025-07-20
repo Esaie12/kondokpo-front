@@ -124,164 +124,129 @@ const ShowCampagne = () => {
 
     return (
         <>
-            
-            <Link to={'/campagnes'} >
-                <button className="back-btn">
-                    <i className="fas fa-arrow-left me-2"></i>Retour
-                </button>
-            </Link>
+        <div className="page-header">
+            <h1 className="page-title">Je suis reconnaissant</h1>
+            <p className="page-subtitle">Une initiative pour exprimer notre gratitude</p>
+        </div>
 
-            <div className="container">
+        <div className="campaign-details">
+            <div className="campaign-main">
+                <div className="campaign-header">
+                    <div className="campaign-badge">Aide Communautaire</div>
+                    <div className="campaign-heart">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </div>
+                    <h2 className="campaign-title">Je suis reconnaissant</h2>
+                    <p className="campaign-author">Par Esaie Akambi O.</p>
+                </div>
+                <div className="campaign-body">
+                    <div className="campaign-description">
+                        Une initiative pour exprimer notre gratitude envers la communauté. Ensemble, nous pouvons créer un impact positif et durable pour ceux qui nous entourent.
+                    </div>
 
-
-                <div className="main-card fade-in">
-                    <div className="campaign-header">
-                        <div className="campaign-icon">
-                            <i className="fas fa-heart"></i>
+                    <div className="campaign-progress">
+                        <div className="progress-info">
+                            <span className="progress-percentage">63%</span>
+                            <span className="progress-time">12 jours restants</span>
                         </div>
-                        <h1 className="campaign-title">{campagne?.titre_cagnotte}</h1>
-                        <p className="campaign-creator">Par {campagne?.user?.first_name} {campagne?.user?.last_name.charAt(0)+'.'}</p>
-                        <div className="d-flex justify-content-center">
-                            <div className='me-3' >
-                                • Créée { campagne?.created_at ? (
-                                    formatDateToFrench( campagne.created_at)
-                                ):(
-                                    <>---</>
-                                )}
-                            </div>
-                            <div>
-                                • Termine le { campagne?.date_evenement ? (
-                                formatDateToFrench( campagne.date_evenement)
-                            ):(
-                                <>---</>
-                            )}
-                            </div>
+                        <div className="progress-bar">
+                            <div className="progress-fill"></div>
+                        </div>
+                        <div className="progress-stats">
+                            <span>Objectif: 5 000 000 FCFA</span>
+                            <span>Collecté: 3 150 000 FCFA</span>
+                            <span>Contributeurs: 128</span>
                         </div>
                     </div>
 
-                    <div className="campaign-body">
-                        {/* 
-                        {(campagne && campagne?.amount_collect)&&(
-                            <ProgressCircle collected={campagne.amount_collect} goal={campagne.objectif_collecte} />
-                        )}
-                        */}
+                    <div className="campaign-actions">
+                        <a href="#" className="btn btn-primary">Contribuer maintenant</a>
+                        <a href="#" className="btn btn-secondary">Partager</a>
+                    </div>
 
-                        
-                        
-                        <div className="stats-grid">
-                            <div className="stat-item">
-                                <div className="stat-number">€{campagne?.amount_collect}</div>
-                                <div className="stat-label">Collectés</div>
-                            </div>
-                            <div className="stat-item">
-                                <div className="stat-number">€{campagne?.objectif_collecte}</div>
-                                <div className="stat-label">Objectif</div>
-                            </div>
-                            <div className="stat-item">
-                                <div className="stat-number">{ campagne?.transactions?.length }</div>
-                                <div className="stat-label">Donateurs</div>
-                            </div>
-                            <div className="stat-item">
-                                <div className="stat-number">
-                                    {campagne ?(
-                                        <>{getDaysRemaining(campagne?.date_evenement)} </>
-                                    ):(
-                                        <>--</>
-                                    )}
-                                </div>
-                                <div className="stat-label">Jours restants</div>
-                            </div>
+                    <div className="campaign-story">
+                        <h3 className="story-title">L'histoire derrière cette cagnotte</h3>
+                        <div className="story-content">
+                            <p>Cette cagnotte a été créée dans le but de rassembler notre communauté autour d'un projet commun de gratitude et de solidarité. Nous croyons fermement que chaque petit geste compte et que, ensemble, nous pouvons faire une réelle différence dans la vie de ceux qui nous entourent.</p>
+                            
+                            <p>L'idée est née d'un constat simple : dans notre quotidien, nous croisons des personnes qui, par leur dévouement, leur gentillesse ou leur travail, rendent nos vies meilleures sans toujours recevoir la reconnaissance qu'elles méritent. Ce sont des enseignants passionnés, des soignants dévoués, des bénévoles engagés ou simplement des voisins attentionnés.</p>
+                            
+                            <p>Les fonds collectés serviront à organiser une grande journée de reconnaissance communautaire où nous pourrons honorer ces personnes et leur offrir des marques concrètes de notre gratitude. Une partie des fonds sera également utilisée pour soutenir des projets locaux qui améliorent la vie de notre communauté.</p>
+                            
+                            <p>Votre contribution, quelle que soit sa taille, est précieuse. Elle représente bien plus qu'une somme d'argent - c'est un geste de reconnaissance, un acte de solidarité et une manière de dire "merci" à ceux qui font la différence.</p>
                         </div>
-
-                        <div className="row">
-                            <div className="col-lg-7">
-                                <div className="campaign-description">
-                                    <h4><i className="fas fa-heart text-danger me-2"></i>Pourquoi cette cagnotte ?</h4>
-                                    <p>{campagne?.message_personnel}</p>
-                                </div>
-                            </div>
-                            <div className="col-lg-5">
-                                <div className="donation-section">
-                                    <h4>Contribuer à cette cagnotte</h4>
-                                    <p className="text-muted">Choisissez votre montant ou saisissez un montant personnalisé</p>
-
-                                    <div className="donation-amounts">
-                                        {amounts.map((amount) => (
-                                        <span
-                                            key={amount}
-                                            className={`amount-btn ${selectedAmount === amount ? "selected" : ""}`}
-                                            onClick={() => handleAmountClick(amount)}
-                                            style={{ cursor: "pointer" }}
-                                        >
-                                            {amount}€
-                                        </span>
-                                        ))}
-                                        <span
-                                        className={`amount-btn ${selectedAmount === "custom" ? "selected" : ""}`}
-                                        onClick={() => handleAmountClick("custom")}
-                                        style={{ cursor: "pointer" }}
-                                        >
-                                        Autre
-                                        </span>
-                                    </div>
-
-                                    {selectedAmount === "custom" && (
-                                        <div className="custom-amount" style={{ marginTop: "10px" }}>
-                                        <input
-                                            type="number"
-                                            className="form-control d-inline-block"
-                                            style={{ width: "120px" }}
-                                            placeholder="Montant"
-                                            min={5}
-                                            value={customAmount}
-                                            onChange={(e) => setCustomAmount(Number(e.target.value))}
-                                        />
-                                        <span className="ms-2">€</span>
-                                        </div>
-                                    )}
-
-                                    <div>
-                                        <FedaCheckoutButton  key={actualAmount}  options={ checkoutButtonOptions } />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
                     </div>
                 </div>
-
-                {campagne?.transactions && campagne?.transactions.length > 0 && (
-                <div className="transactions-section fade-in">
-                    <div className="transactions-header">
-                        <h3 className="transactions-title">
-                            <i className="fas fa-history me-2"></i>Historique des contributions
-                        </h3>
-                    </div>
-                    {campagne?.transactions && campagne?.transactions.length > 0 && (
-                        campagne.transactions.map((trans)=>(
-                            <>
-                            <div className="transaction-item">
-                                <div className="transaction-avatar">{ trans.customer_firstname[0].toUpperCase()}{trans.customer_lastname[0].toUpperCase()}</div>
-                                <div className="transaction-details">
-                                    <div className="transaction-name">{trans.customer_firstname} {trans.customer_lastname}</div>
-                                    <div className="transaction-time">
-                                        { trans.created_at ? (
-                                            formatDateToFrench( trans.created_at)
-                                        ):(
-                                            <>---</>
-                                        )}
-                                    </div>
-                                    {/*<div className="transaction-message">"Joyeux anniversaire Sarah ! Belle initiative 🎂"</div>*/}
-                                </div>
-                                <div className="transaction-amount">+{trans.amount}€</div>
-                            </div>
-                            </>
-                        ))
-                    )}
-                </div>
-                )}
             </div>
+
+            <div className="campaign-sidebar">
+                <div className="donation-card">
+                    <h3 className="donation-title">Faire un don</h3>
+                    <div className="donation-amounts">
+                        <button className="amount-btn">1 000 FCFA</button>
+                        <button className="amount-btn">2 500 FCFA</button>
+                        <button className="amount-btn">5 000 FCFA</button>
+                        <button className="amount-btn">10 000 FCFA</button>
+                        <button className="amount-btn selected">25 000 FCFA</button>
+                        <button className="amount-btn">50 000 FCFA</button>
+                    </div>
+                    <div className="custom-amount">
+                        <input type="number" placeholder="Autre montant"/>
+                        <span>FCFA</span>
+                    </div>
+                    <button className="btn btn-primary donate-btn">Faire un don</button>
+                </div>
+
+                <div className="supporters-card">
+                    <h3 className="supporters-title">Derniers contributeurs</h3>
+                    <div className="supporter">
+                        <div className="supporter-avatar">MK</div>
+                        <div className="supporter-info">
+                            <div className="supporter-name">Marc Kouamé</div>
+                            <div className="supporter-amount">25 000 FCFA</div>
+                        </div>
+                        <div className="supporter-time">Il y a 2h</div>
+                    </div>
+                    <div className="supporter">
+                        <div className="supporter-avatar">AD</div>
+                        <div className="supporter-info">
+                            <div className="supporter-name">Aïcha Diallo</div>
+                            <div className="supporter-amount">10 000 FCFA</div>
+                        </div>
+                        <div className="supporter-time">Il y a 5h</div>
+                    </div>
+                    <div className="supporter">
+                        <div className="supporter-avatar">JT</div>
+                        <div className="supporter-info">
+                            <div className="supporter-name">Jean Toussaint</div>
+                            <div className="supporter-amount">50 000 FCFA</div>
+                        </div>
+                        <div className="supporter-time">Il y a 1j</div>
+                    </div>
+                    <div className="supporter">
+                        <div className="supporter-avatar">FB</div>
+                        <div className="supporter-info">
+                            <div className="supporter-name">Fatou Bamba</div>
+                            <div className="supporter-amount">15 000 FCFA</div>
+                        </div>
+                        <div className="supporter-time">Il y a 1j</div>
+                    </div>
+                    <div className="supporter">
+                        <div className="supporter-avatar">PK</div>
+                        <div className="supporter-info">
+                            <div className="supporter-name">Paul Konan</div>
+                            <div className="supporter-amount">30 000 FCFA</div>
+                        </div>
+                        <div className="supporter-time">Il y a 2j</div>
+                    </div>
+                    <div className="view-all">
+                        <a href="#">Voir tous les contributeurs (128)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
             
         </>
     )

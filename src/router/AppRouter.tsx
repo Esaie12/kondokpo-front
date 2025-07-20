@@ -19,10 +19,11 @@ const AppRouter = () => {
                 <Route path="campagne/create" element={<CreateCampagne />} />
                 <Route path="campagnes" element={<ListeCampagne />} />
                 
-            </Route>
-            <Route path="campagnes/:slug" element={<ShowCampagne />} />
-            <Route path="payment/:transaction_id/:slug" element={<PaymentStatut />} />
+                <Route path="campagnes/:slug" element={<ShowCampagne />} />
+                <Route path="payment/:transaction_id/:slug" element={<PaymentStatut />} />
 
+            </Route>
+            
         </Routes>
     )
 }
